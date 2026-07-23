@@ -21,6 +21,10 @@ Single-file static web app: `calculator/index.html`.
 - Mouse clicks and keyboard input are handled by two separate listeners (`click` on `.keys`, `keydown` on `window`) that both funnel into the same core operations (`inputDigit`, `inputDecimal`, `chooseOperator`, `evaluate`, `clearAll`, `negate`, `percent`), so changes to calculator behavior should be made in those shared functions rather than duplicated per input method.
 - There is no automated test suite for this app. To verify a change, load `index.html` in a browser (or, in a headless/sandboxed environment without browser tooling available, extract the `<script>` contents and exercise the exported logic against a minimal `document`/`window` stub in Node).
 
+## Communicating results
+
+When a task was requested over Telegram, send the result/outcome back via the Telegram `reply` tool when it's done (not just as in-session text) — the user reads Telegram, not this transcript. This applies to background/multi-step work too: don't let something finish silently, send a follow-up message once there's a real result.
+
 ## Working across subdirectories
 
 Each subdirectory under this workspace is independent — there is no shared root configuration, monorepo tooling, or cross-directory imports. When adding a new project here, keep it self-contained within its own directory rather than wiring it into the others.
