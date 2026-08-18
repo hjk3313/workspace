@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    { "source": "/favorites", "destination": "/favorites.html" },
+    { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/guide", "destination": "/guide.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/register", "destination": "/register.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.(css|js)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}

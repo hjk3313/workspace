@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전국 계곡 해수욕장 지도 - 풍덩</title>
+  <meta name="description" content="어디로 물놀이 갈지 고민된다면 풍덩! 전국 계곡·해수욕장을 지역과 수심별로 찾아보고, 실제 후기까지 확인하세요. 안전하고 즐거운 여름을 위한 필수 지도.">
+  <meta property="og:title" content="전국 계곡 해수욕장 지도 - 풍덩">
+  <meta property="og:description" content="어디로 물놀이 갈지 고민된다면 풍덩! 전국 계곡·해수욕장을 지역과 수심별로 찾아보고, 실제 후기까지 확인하세요. 안전하고 즐거운 여름을 위한 필수 지도.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pungdeong.com/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "전국 계곡 해수욕장 지도 - 풍덩",
+    "alternateName": ["계곡 지도", "해수욕장 지도", "풍덩"],
+    "description": "어디로 물놀이 갈지 고민된다면 풍덩! 전국 계곡·해수욕장을 지역과 수심별로 찾아보고, 실제 후기까지 확인하세요. 안전하고 즐거운 여름을 위한 필수 지도.",
+    "url": "https://www.pungdeong.com/"
+  }
+  </script>
+  <!-- Google AdSense: 광고 단위 실제로 만들면 type="text/plain" 지우고 활성화. 지금은 슬롯이 없어 로드하면 낭비. -->
+  <script type="text/plain" data-note="ca-pub-1475889248445126" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1475889248445126" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header>
+    <div>
+      <h1>전국 계곡 해수욕장 지도 - 풍덩</h1>
+      <p>어디로 물놀이 갈지 고민된다면 풍덩! 전국 계곡·해수욕장을 지역과 수심별로 찾아보고, 실제 후기까지 확인하세요. 안전하고 즐거운 여름을 위한 필수 지도.</p>
+    </div>
+    <nav class="site-nav">
+      <a href="/" class="current">지도</a>
+      <a href="/favorites">즐겨찾기</a>
+      <a href="/reviews">전체 후기</a>
+      <a href="/guide">안전가이드</a>
+      <a href="/register">장소 등록</a>
+    </nav>
+  </header>
+
+  <main>
+  <div id="controls">
+    <button class="controls-title" id="controlsToggle" type="button">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      검색 및 필터
+      <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div id="controlsBody">
+      <input id="searchInput" type="text" placeholder="이름 또는 지역으로 검색...">
+
+      <div class="filter-row">
+        <span class="filter-label">지역</span>
+        <div class="pills" id="regionPills"></div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">유형</span>
+        <div class="pills" id="typePills">
+          <button class="pill active" data-value="all">전체</button>
+          <button class="pill" data-value="beach">해수욕장</button>
+          <button class="pill" data-value="valley">계곡</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">수심</span>
+        <div class="pills" id="depthPills">
+          <button class="pill active" data-value="all">전체</button>
+          <button class="pill" data-value="shallow">얕음</button>
+          <button class="pill" data-value="medium">보통</button>
+          <button class="pill" data-value="deep">깊음</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">정렬</span>
+        <div class="pills" id="sortPills">
+          <button class="pill active" data-value="default">기본순</button>
+          <button class="pill" data-value="distance">거리순</button>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <button class="pill" id="favOnlyBtn" data-value="favOnly">즐겨찾기만 보기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google AdSense 광고 단위: 실제 슬롯 ID 받으면 아래 주석 풀고 data-ad-slot 교체
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-1475889248445126"
+      data-ad-slot="0000000000"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  -->
+
+  <div class="view-tabs" id="viewTabs">
+    <button class="active" data-view="list">리스트</button>
+    <button data-view="map">지도</button>
+  </div>
+
+  <div id="layout" class="show-list">
+    <div class="map-pane">
+      <div class="pane-title">위치</div>
+      <div id="map"></div>
+    </div>
+    <div class="list-pane">
+      <div class="pane-title">목록 <span id="count"></span></div>
+      <div id="list"></div>
+    </div>
+  </div>
+  </main>
+
+  <footer>
+    수심은 실측치가 아닌 참고용 3단계 구분입니다 · 좌표는 표기용 근사치입니다<br>
+    안전수칙: 음주 후 입수 금지 · 구명조끼 착용 권장 · 우천·상류 방류 시 급류 위험 · 지정되지 않은 구역 다이빙 금지<br>
+    <a href="/privacy">개인정보처리방침</a>
+  </footer>
+
+  <div class="modal-overlay" id="reviewModalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="reviewModalTitle"></h3>
+        <button class="modal-close-btn" id="reviewModalClose">닫기</button>
+      </div>
+      <div id="reviewList"></div>
+      <form id="reviewForm">
+        <input id="reviewNickname" type="text" placeholder="닉네임 (선택, 비우면 익명)">
+        <select id="reviewRating">
+          <option value="5">5점 - 최고예요</option>
+          <option value="4">4점 - 좋아요</option>
+          <option value="3" selected>3점 - 보통</option>
+          <option value="2">2점 - 별로예요</option>
+          <option value="1">1점 - 비추천</option>
+        </select>
+        <textarea id="reviewComment" rows="3" placeholder="후기를 남겨주세요" required></textarea>
+        <button type="submit">후기 등록</button>
+        <span id="reviewStatus"></span>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/reviews-widget.js"></script>
+  <script>
+    // 네이버 클라우드 플랫폼(Ncloud) > Maps 에서 발급받은 Client ID를 넣으세요.
+    // https://console.ncloud.com > AI·Application Service > Maps
+    const NAVER_MAP_CLIENT_ID = "9mmz337wla";
+
+    function loadNaverMaps(clientId, onload) {
+      window.navermap_authFailure = () => {
+        document.getElementById("map").innerHTML =
+          '<div id="apiKeyWarning">네이버 지도 인증에 실패했습니다.<br>NAVER_MAP_CLIENT_ID 값과 Ncloud 콘솔의 Web 서비스 URL 등록(현재 도메인)을 확인하세요.</div>';
+      };
+      const script = document.createElement("script");
+      script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${clientId}`;
+      script.onload = onload;
+      script.onerror = () => {
+        document.getElementById("map").innerHTML =
+          '<div id="apiKeyWarning">네이버 지도를 불러오지 못했습니다.<br>네트워크 상태를 확인하세요.</div>';
+      };
+      document.head.appendChild(script);
+    }
+
+    function initPillGroup(container, onSelect) {
+      container.addEventListener("click", (e) => {
+        const btn = e.target.closest(".pill");
+        if (!btn) return;
+        [...container.children].forEach(c => c.classList.remove("active"));
+        btn.classList.add("active");
+        onSelect(btn.dataset.value);
+      });
+    }
+
+    function init() {
+      const map = new naver.maps.Map("map", {
+        center: new naver.maps.LatLng(36.4, 127.9),
+        zoom: 7,
+      });
+
+      const state = { region: "all", type: "all", depth: "all", search: "", favOnly: false, sort: "default" };
+      let userLoc = null;
+
+      function requestDistanceSort() {
+        if (!navigator.geolocation) {
+          alert("이 브라우저는 위치 확인을 지원하지 않습니다.");
+          resetSortToDefault();
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            userLoc = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+            render();
+          },
+          () => {
+            alert("위치 확인을 허용해야 거리순 정렬을 쓸 수 있어요.");
+            resetSortToDefault();
+          }
+        );
+      }
+
+      function resetSortToDefault() {
+        state.sort = "default";
+        const sortPills = document.getElementById("sortPills");
+        [...sortPills.children].forEach(c => c.classList.toggle("active", c.dataset.value === "default"));
+        render();
+      }
+
+      document.getElementById("controlsToggle").addEventListener("click", () => {
+        document.getElementById("controls").classList.toggle("open");
+      });
+
+      initReviewModal(() => render());
+
+      const favorites = getFavorites();
+      function toggleFavorite(name) {
+        if (favorites.has(name)) favorites.delete(name);
+        else favorites.add(name);
+        setFavorites(favorites);
+        render();
+      }
+
+      document.getElementById("favOnlyBtn").addEventListener("click", (e) => {
+        state.favOnly = !state.favOnly;
+        e.currentTarget.classList.toggle("active", state.favOnly);
+        render();
+      });
+
+      const regionPills = document.getElementById("regionPills");
+      const allBtn = document.createElement("button");
+      allBtn.className = "pill active";
+      allBtn.dataset.value = "all";
+      allBtn.textContent = "전체";
+      regionPills.appendChild(allBtn);
+      REGIONS.forEach(region => {
+        const btn = document.createElement("button");
+        btn.className = "pill";
+        btn.dataset.value = region;
+        btn.textContent = region;
+        regionPills.appendChild(btn);
+      });
+
+      const layout = document.getElementById("layout");
+      document.getElementById("viewTabs").addEventListener("click", (e) => {
+        const btn = e.target.closest("button");
+        if (!btn) return;
+        [...btn.parentElement.children].forEach(c => c.classList.remove("active"));
+        btn.classList.add("active");
+        layout.classList.remove("show-list", "show-map");
+        layout.classList.add(btn.dataset.view === "map" ? "show-map" : "show-list");
+        if (btn.dataset.view === "map") {
+          // 탭 전환으로 지도 컨테이너가 display:none -> block 될 때, 브라우저가 리플로우를 끝내기 전에
+          // refresh를 호출하면 네이버 지도가 예전(0 또는 작은) 크기로 다시 그려진다. rAF 두 번으로 페인트 이후로 미룬다.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              try {
+                map.refresh(true);
+                map.setCenter(map.getCenter());
+              } catch (err) {}
+            });
+          });
+        }
+      });
+
+      initPillGroup(regionPills, v => { state.region = v; render(); });
+      initPillGroup(document.getElementById("typePills"), v => { state.type = v; render(); });
+      initPillGroup(document.getElementById("depthPills"), v => { state.depth = v; render(); });
+      initPillGroup(document.getElementById("sortPills"), v => {
+        state.sort = v;
+        if (v === "distance") requestDistanceSort();
+        else render();
+      });
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        state.search = e.target.value.trim().toLowerCase();
+        render();
+      });
+
+      let markers = [];
+      let infoWindow = new naver.maps.InfoWindow({ content: "" });
+
+      function filteredSpots() {
+        const spots = SPOTS.filter(s => {
+          if (state.region !== "all" && s.region !== state.region) return false;
+          if (state.type !== "all" && s.type !== state.type) return false;
+          if (state.depth !== "all" && s.depth !== state.depth) return false;
+          if (state.search && !(s.name.toLowerCase().includes(state.search) || s.region.toLowerCase().includes(state.search))) return false;
+          if (state.favOnly && !favorites.has(s.name)) return false;
+          return true;
+        });
+        if (state.sort === "distance" && userLoc) {
+          spots.sort((a, b) =>
+            distanceKm(userLoc.lat, userLoc.lng, a.lat, a.lng) -
+            distanceKm(userLoc.lat, userLoc.lng, b.lat, b.lng)
+          );
+        }
+        return spots;
+      }
+
+      function focusSpot(spot, marker) {
+        map.panTo(new naver.maps.LatLng(spot.lat, spot.lng));
+        infoWindow.setContent(
+          `<div style="padding:8px 10px;font-size:13px;">
+          <b><span style="display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:${typeColor[spot.type]};"></span>${spot.name}</b><br>
+          ${spot.region} · ${typeLabel[spot.type]} · 수심 ${depthLabel[spot.depth]}<br>
+          <span style="color:#666;">${spot.address}</span><br>
+          <span style="color:#666;">${spot.note}</span>
+        </div>`
+        );
+        infoWindow.open(map, marker);
+      }
+
+      function render() {
+        markers.forEach(m => { try { m.setMap(null); } catch (err) {} });
+        markers = [];
+
+        const spots = filteredSpots();
+        const list = document.getElementById("list");
+        list.innerHTML = "";
+
+        spots.forEach(spot => {
+          // 지도 인증이 실패해도 리스트/필터는 계속 동작해야 하므로 마커 생성 실패를 격리한다.
+          let marker = null;
+          try {
+            marker = new naver.maps.Marker({
+              position: new naver.maps.LatLng(spot.lat, spot.lng),
+              map,
+              icon: {
+                content: `<svg width="24" height="32" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35));">
+                  <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 20 12 20s12-11 12-20C24 5.4 18.6 0 12 0z" fill="${typeColor[spot.type]}"/>
+                  <circle cx="12" cy="12" r="4.5" fill="#fff"/>
+                </svg>`,
+                anchor: new naver.maps.Point(12, 32),
+              },
+            });
+            naver.maps.Event.addListener(marker, "click", () => focusSpot(spot, marker));
+            markers.push(marker);
+          } catch (err) {
+            marker = null;
+          }
+
+          const dist = (state.sort === "distance" && userLoc)
+            ? distanceKm(userLoc.lat, userLoc.lng, spot.lat, spot.lng)
+            : null;
+          const item = document.createElement("div");
+          item.className = "item";
+          item.innerHTML = spotCardHTML(spot, favorites.has(spot.name), dist);
+          item.addEventListener("click", () => { if (marker) focusSpot(spot, marker); });
+          item.querySelector(".fav-btn").addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleFavorite(spot.name);
+          });
+          item.querySelector(".review-btn").addEventListener("click", (e) => {
+            e.stopPropagation();
+            openReviewModal(spot.name);
+          });
+          list.appendChild(item);
+        });
+
+        document.getElementById("count").textContent = `${spots.length}곳 표시 중`;
+      }
+
+      render();
+      loadReviewStats().then(render);
+    }
+
+    loadNaverMaps(NAVER_MAP_CLIENT_ID, init);
+  </script>
+
+</body>
+
+</html>

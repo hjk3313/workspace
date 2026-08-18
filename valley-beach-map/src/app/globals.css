@@ -1,0 +1,1103 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #f4f6f8;
+  --header-bg: #10233b;
+  --header-text: #f1f5f9;
+  --header-text-muted: #94a3b8;
+  --pill-bg: #e9edf1;
+  --pill-text: #475569;
+  --accent: #ea580c;
+  --accent-text: #fff;
+  --beach: #2563eb;
+  --valley: #15803d;
+  --depth-shallow: #7dd3fc;
+  --depth-medium: #0ea5e9;
+  --depth-deep: #0c4a6e;
+  --border: #dde3e9;
+  --text: #0f172a;
+  --text-gray: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* 화면엔 안 보이지만 스크린리더/검색엔진엔 읽히는 진짜 h1용. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Work Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+header {
+  flex-shrink: 0;
+  padding: 14px 20px;
+  background: var(--header-bg);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  margin-right: 4px;
+}
+
+.logo-text {
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--header-text);
+  letter-spacing: -0.2px;
+}
+
+header h1 {
+  margin: 0;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--header-text);
+}
+
+header p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--header-text-muted);
+}
+
+nav.site-nav {
+  display: flex;
+  gap: 6px;
+}
+
+nav.site-nav a {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--header-text);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+nav.site-nav a:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+nav.site-nav a.current {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.dot.beach {
+  background: var(--beach);
+}
+
+.dot.valley {
+  background: var(--valley);
+}
+
+#controls {
+  flex-shrink: 0;
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  margin: 10px auto 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.controls-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.controls-title .chevron {
+  margin-left: auto;
+  transition: transform 180ms ease;
+}
+
+#controls.open .controls-title .chevron {
+  transform: rotate(180deg);
+}
+
+#controlsBody {
+  display: none;
+  margin-top: 10px;
+}
+
+#controls.open #controlsBody {
+  display: block;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--bg);
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  padding: 0 14px;
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.search-box:focus-within {
+  background: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.1);
+}
+
+.search-box-icon {
+  flex-shrink: 0;
+  color: var(--text-gray);
+}
+
+.search-box-input {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 9px 8px;
+  font-size: 13.5px;
+  outline: none;
+  color: var(--text);
+}
+
+.search-box-clear {
+  flex-shrink: 0;
+  border: none;
+  background: var(--border);
+  color: var(--text-gray);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 10px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-box-clear:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: var(--text-gray);
+  min-width: 30px;
+}
+
+.pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  border: none;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.pill:hover {
+  background: var(--border);
+}
+
+.pill.active:hover {
+  filter: brightness(1.08);
+}
+
+.pill.active {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+#count {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-gray);
+}
+
+#layout {
+  display: flex;
+  height: 90vh;
+  min-height: 420px;
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  margin: 10px auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.map-pane {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.list-pane {
+  width: 380px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.pane-title {
+  flex-shrink: 0;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 14px 16px 10px;
+  background: var(--bg);
+}
+
+.pane-title #count {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+#map {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.item {
+  padding: 14px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+
+.item:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.item .row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.item .name {
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+.item .region {
+  font-size: 11px;
+  color: var(--text-gray);
+}
+
+.fav-btn,
+.review-btn,
+.directions-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid transparent;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-left: 6px;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, filter 150ms ease;
+}
+
+.fav-btn {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+
+.fav-btn:hover {
+  filter: brightness(0.97);
+}
+
+.fav-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.review-btn {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: var(--beach);
+}
+
+.review-btn:hover {
+  filter: brightness(0.97);
+}
+
+.directions-btn {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: var(--valley);
+}
+
+.directions-btn:hover {
+  filter: brightness(0.97);
+}
+
+.kakao-share-btn {
+  border: none;
+  background: #fee500;
+  color: #191600;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-left: 6px;
+  transition: filter 150ms ease;
+}
+
+.kakao-share-btn:hover {
+  filter: brightness(0.95);
+}
+
+.item .pin {
+  font-size: 12px;
+  color: var(--text-gray);
+  margin-top: 3px;
+}
+
+.item .badges {
+  margin-top: 6px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  color: #fff;
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-right: 4px;
+}
+
+.badge.beach {
+  background: var(--beach);
+}
+
+.badge.valley {
+  background: var(--valley);
+}
+
+.badge.shallow {
+  background: var(--depth-shallow);
+}
+
+.badge.medium {
+  background: var(--depth-medium);
+}
+
+.badge.deep {
+  background: var(--depth-deep);
+}
+
+.badge.danger {
+  background: #dc2626;
+  font-weight: 600;
+}
+
+.popular-ranking {
+  width: calc(100% - 40px);
+  max-width: 1400px;
+  margin: 10px auto 0;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.popular-ranking-title {
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.popular-ranking-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.popular-ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.popular-ranking-item:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.popular-ranking-item .rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.popular-ranking-item .rank-stat {
+  color: var(--text-gray);
+  font-size: 11px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.info-box {
+  background: var(--bg);
+  border-left: 3px solid var(--beach);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.info-box.type-valley {
+  border-left-color: var(--valley);
+}
+
+.info-box .info-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  color: var(--text-gray);
+  margin-bottom: 4px;
+}
+
+.info-box .info-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--beach);
+  flex-shrink: 0;
+}
+
+.info-box.type-valley .info-label::before {
+  background: var(--valley);
+}
+
+.info-box .info-value {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+}
+
+.item .note {
+  font-size: 12px;
+  color: var(--text-gray);
+  margin-top: 10px;
+  background: rgba(21, 128, 61, 0.08);
+  border-left: 3px solid var(--valley);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.item .stats {
+  font-size: 11px;
+  color: var(--text-gray);
+  margin-top: 8px;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.modal-close-btn {
+  border: none;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.review-item {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 12px;
+}
+
+.review-item .review-meta {
+  color: var(--text-gray);
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.review-form,
+.register-form {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-form select,
+.review-form input,
+.review-form textarea,
+.register-form select,
+.register-form input,
+.register-form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  background: #fff;
+}
+
+.review-form select:focus,
+.review-form input:focus,
+.review-form textarea:focus,
+.register-form select:focus,
+.register-form input:focus,
+.register-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.register-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.register-form label .optional {
+  font-weight: 400;
+  color: var(--text-gray);
+}
+
+.register-form label .required {
+  color: #dc2626;
+}
+
+.review-form button,
+.register-form button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 150ms ease;
+}
+
+.review-form button:hover,
+.register-form button:hover {
+  filter: brightness(1.08);
+}
+
+.review-status,
+.register-status {
+  font-size: 12px;
+  color: var(--text-gray);
+  text-align: center;
+}
+
+.register-page-header {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 0;
+}
+
+.register-page-header h2 {
+  margin: 0 0 4px;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-size: 20px;
+}
+
+.register-page-header p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+.register-form-card {
+  padding: 20px !important;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--text-gray);
+  padding: 6px 12px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+#apiKeyWarning {
+  padding: 40px 20px;
+  text-align: center;
+  color: #b91c1c;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.page-list {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 20px 40px;
+}
+
+.page-list .item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: default;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-gray);
+  font-size: 13px;
+  padding: 60px 20px;
+}
+
+.view-tabs {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .view-tabs {
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+    padding: 0 20px 12px;
+    background: var(--bg);
+  }
+
+  .view-tabs button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .view-tabs button.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  #layout {
+    flex-direction: column;
+  }
+
+  .list-pane,
+  .map-pane {
+    width: 100%;
+    height: 100%;
+  }
+
+  .list-pane {
+    border-left: none;
+  }
+
+  #layout.show-list .map-pane {
+    display: none;
+  }
+
+  #layout.show-map .list-pane {
+    display: none;
+  }
+}
+
+/* ── 관리자 대시보드 ────────────────────────────── */
+
+.admin-login-screen {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-login-box {
+  width: 280px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.admin-login-box h2 {
+  margin: 0 0 4px;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+.admin-login-box input {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.admin-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.admin-topbar h1 {
+  margin: 0;
+  font-family: "Outfit", "Apple SD Gothic Neo", sans-serif;
+  font-size: 20px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+.admin-tabs button {
+  border: none;
+  background: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-gray);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.admin-tabs button:hover {
+  color: var(--text);
+}
+
+.admin-tabs button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.admin-empty {
+  text-align: center;
+  color: var(--text-gray);
+  font-size: 13px;
+  padding: 40px 20px;
+}
+
+.admin-muted {
+  font-size: 11.5px;
+  color: var(--text-gray);
+}
+
+.admin-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.admin-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.admin-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.admin-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.admin-btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.admin-btn-danger {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.admin-btn-danger:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+.admin-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px;
+}
+
+.admin-card p {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+}
+
+.admin-card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13.5px;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.admin-table th {
+  background: var(--bg);
+  color: var(--text-gray);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-td-ellipsis {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .admin-shell {
+    padding: 14px 12px 40px;
+  }
+}

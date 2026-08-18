@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>즐겨찾기 - 풍덩</title>
+  <meta name="description" content="즐겨찾기한 계곡·해수욕장을 모아서 확인하세요. 풍덩!">
+  <meta property="og:title" content="즐겨찾기 - 풍덩">
+  <meta property="og:description" content="즐겨찾기한 계곡·해수욕장을 모아서 확인하세요. 풍덩!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pungdeong.com/favorites">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Google AdSense: 광고 단위 실제로 만들면 type="text/plain" 지우고 활성화. 지금은 슬롯이 없어 로드하면 낭비. -->
+  <script type="text/plain" data-note="ca-pub-1475889248445126" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1475889248445126" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header>
+    <div>
+      <h1>즐겨찾기</h1>
+      <p>내가 저장한 계곡·해수욕장 (이 브라우저에만 저장돼요)</p>
+    </div>
+    <nav class="site-nav">
+      <a href="/">지도</a>
+      <a href="/favorites" class="current">즐겨찾기</a>
+      <a href="/reviews">전체 후기</a>
+      <a href="/guide">안전가이드</a>
+      <a href="/register">장소 등록</a>
+    </nav>
+  </header>
+
+  <main>
+  <div id="favList" class="page-list"></div>
+  </main>
+
+  <div class="modal-overlay" id="reviewModalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="reviewModalTitle"></h3>
+        <button class="modal-close-btn" id="reviewModalClose">닫기</button>
+      </div>
+      <div id="reviewList"></div>
+      <form id="reviewForm">
+        <input id="reviewNickname" type="text" placeholder="닉네임 (선택, 비우면 익명)">
+        <select id="reviewRating">
+          <option value="5">5점 - 최고예요</option>
+          <option value="4">4점 - 좋아요</option>
+          <option value="3" selected>3점 - 보통</option>
+          <option value="2">2점 - 별로예요</option>
+          <option value="1">1점 - 비추천</option>
+        </select>
+        <textarea id="reviewComment" rows="3" placeholder="후기를 남겨주세요" required></textarea>
+        <button type="submit">후기 등록</button>
+        <span id="reviewStatus"></span>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/reviews-widget.js"></script>
+  <script>
+    const favorites = getFavorites();
+
+    function render() {
+      const list = document.getElementById("favList");
+      const names = [...favorites].filter(name => SPOT_BY_NAME[name]);
+      list.innerHTML = "";
+
+      if (!names.length) {
+        list.innerHTML = '<div class="empty-state">아직 즐겨찾기한 장소가 없어요.<br><a href="/">지도에서 둘러보고</a> 마음에 드는 곳을 즐겨찾기해보세요.</div>';
+        return;
+      }
+
+      names.forEach(name => {
+        const spot = SPOT_BY_NAME[name];
+        const item = document.createElement("div");
+        item.className = "item";
+        item.innerHTML = spotCardHTML(spot, true);
+        item.querySelector(".fav-btn").addEventListener("click", () => {
+          favorites.delete(name);
+          setFavorites(favorites);
+          render();
+        });
+        item.querySelector(".review-btn").addEventListener("click", () => openReviewModal(spot.name));
+        list.appendChild(item);
+      });
+    }
+
+    initReviewModal(() => render());
+    render();
+    loadReviewStats().then(render);
+  </script>
+
+  <footer><a href="/privacy">개인정보처리방침</a></footer>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+# 풍덩 (pungdeong.com)
+
+> 전국 계곡·해수욕장을 지역·수심별로 찾아볼 수 있는 지도 서비스. 장소 정보와 실제 방문자 후기를 함께 제공합니다.
+
+풍덩은 개인이 운영하는 무료 서비스입니다. 공개된 지자체·관광 정보와 이용자 제보를 바탕으로 운영자가 확인 후 지도에 등록하며, 수심 구분(얕음·보통·깊음)은 실측값이 아닌 참고용 3단계 값입니다.
+
+## 주요 페이지
+
+- [지도](https://www.pungdeong.com/): 전국 계곡·해수욕장 지도, 지역/유형/수심별 필터
+- [안전가이드](https://www.pungdeong.com/guide): 계곡과 해수욕장의 차이, 준비물, 안전 수칙, 비 온 뒤 대처법
+- [전체 후기](https://www.pungdeong.com/reviews): 방문자 후기 모음
+- [장소 등록](https://www.pungdeong.com/register): 지도에 없는 장소 제보
+- [사이트 소개](https://www.pungdeong.com/about): 서비스 목적, 데이터 출처, 문의처
+- [개인정보처리방침](https://www.pungdeong.com/privacy)
+
+## 문의
+
+hjk3313@gmail.com

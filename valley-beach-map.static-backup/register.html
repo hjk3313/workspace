@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장소 등록 - 풍덩</title>
+  <meta name="description" content="아직 지도에 없는 계곡·해수욕장을 제보해주세요. 확인 후 지도에 반영됩니다.">
+  <meta property="og:title" content="장소 등록 - 풍덩">
+  <meta property="og:description" content="아직 지도에 없는 계곡·해수욕장을 제보해주세요. 확인 후 지도에 반영됩니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pungdeong.com/register">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Google AdSense: 광고 단위 실제로 만들면 type="text/plain" 지우고 활성화. 지금은 슬롯이 없어 로드하면 낭비. -->
+  <script type="text/plain" data-note="ca-pub-1475889248445126" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1475889248445126" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header>
+    <div>
+      <h1>장소 등록</h1>
+      <p>아직 지도에 없는 계곡·해수욕장을 제보해주세요</p>
+    </div>
+    <nav class="site-nav">
+      <a href="/">지도</a>
+      <a href="/favorites">즐겨찾기</a>
+      <a href="/reviews">전체 후기</a>
+      <a href="/guide">안전가이드</a>
+      <a href="/register" class="current">장소 등록</a>
+    </nav>
+  </header>
+
+  <main>
+  <div class="page-list">
+    <div class="item" style="cursor:default;">
+      <form id="registerForm">
+        <label>이름 *<br>
+          <input id="regName" type="text" placeholder="예: OO계곡, OO해수욕장" required>
+        </label>
+        <label>유형 *<br>
+          <select id="regType" required>
+            <option value="">선택하세요</option>
+            <option value="beach">해수욕장</option>
+            <option value="valley">계곡</option>
+          </select>
+        </label>
+        <label>지역 *<br>
+          <select id="regRegion" required>
+            <option value="">선택하세요</option>
+          </select>
+        </label>
+        <label>주소 *<br>
+          <input id="regAddress" type="text" placeholder="예: 강원특별자치도 강릉시 OO면" required>
+        </label>
+        <label>수심<br>
+          <select id="regDepth">
+            <option value="">모름</option>
+            <option value="shallow">얕음</option>
+            <option value="medium">보통</option>
+            <option value="deep">깊음</option>
+          </select>
+        </label>
+        <label>설명<br>
+          <textarea id="regNote" rows="3" placeholder="특징이나 참고할 점을 알려주세요 (선택)"></textarea>
+        </label>
+        <label>닉네임<br>
+          <input id="regNickname" type="text" placeholder="선택, 비우면 익명">
+        </label>
+        <button type="submit">제보하기</button>
+        <span id="regStatus"></span>
+      </form>
+    </div>
+  </div>
+  </main>
+
+  <footer><a href="/privacy">개인정보처리방침</a></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script>
+    const regionSelect = document.getElementById("regRegion");
+    REGIONS.forEach(region => {
+      const opt = document.createElement("option");
+      opt.value = region;
+      opt.textContent = region;
+      regionSelect.appendChild(opt);
+    });
+
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById("regStatus");
+      statusEl.textContent = "제보하는 중...";
+      try {
+        const res = await supabaseFetch("submissions", {
+          method: "POST",
+          headers: { Prefer: "return=minimal" },
+          body: JSON.stringify({
+            name: document.getElementById("regName").value.trim(),
+            type: document.getElementById("regType").value,
+            region: document.getElementById("regRegion").value,
+            address: document.getElementById("regAddress").value.trim(),
+            depth: document.getElementById("regDepth").value || null,
+            note: document.getElementById("regNote").value.trim() || null,
+            nickname: document.getElementById("regNickname").value.trim() || "익명",
+          }),
+        });
+        if (!res.ok) throw new Error("failed");
+        statusEl.textContent = "제보해주셔서 감사합니다! 확인 후 지도에 반영됩니다.";
+        document.getElementById("registerForm").reset();
+      } catch (err) {
+        statusEl.textContent = "제보에 실패했습니다. Supabase 설정을 확인하세요.";
+      }
+    });
+  </script>
+
+</body>
+
+</html>
